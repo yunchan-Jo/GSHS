@@ -1,41 +1,32 @@
 #include <iostream>
 #include <string>
-#include <map>
-#include <vector>
+#include <set>
 
 using namespace std;
-map<string, int> m;
+set<string> s;
 string str;
-vector<int> v;
 
 int main(void) {
     int n; cin >> n >> str;
 
-    int cnt = 0;
+    int cnt = 1;
     for (int i = 0; i < str.size(); i++) {
-        if (m.find(str.substr(i, 1)) == m.end()) {
-            m.insert(make_pair(str.substr(i, 1), ++cnt));
+        if (s.find(str.substr(i, 1)) == s.end()) {
+            s.insert(str.substr(i, 1));
+
+            cout << cnt++ << ":" << str.substr(i, 1) << "\n";
         }
     }
 
     for (int i = 0; i < str.size(); i++) {
-        string s; int t = str.size();
-        for (int j = 1; j <= str.size() - i; j++) {
-            if (m.find(str.substr(i, j)) == m.end()) {
-                m.insert(make_pair(str.substr(i, j), ++cnt));
-
-                t = i + j - 2; break;
+        for (int j = 2; j <= str.size() - i; j++) {
+            if (s.find(str.substr(i, j)) == s.end()) {
+                s.insert(str.substr(i, j));
+    
+                cout << cnt++ << ":" << str.substr(i, j) << "\n"; 
+                i = i + j - 2;
+                break;
             }
-            else s = str.substr(i, j);
         }
-
-        v.push_back(m.find(s)->second);
-        i = t;
-    }
-
-    cout << v.size() << "\n";
-
-    for (int i = 0; i < v.size(); i++) {
-        cout << v[i] << " ";
     }
 }

@@ -9,9 +9,9 @@ void f(int num) {
         int ok = 0;
         for (int i = 1; i <= m; i++) {
             if (a[i] != p[i]) ok = 1;
-            printf("%c", p[i]);
+            // printf("%c", p[i]);
         }
-        printf("%d\n", ok);
+        // printf("%d\n", ok);
 
         if (ok == 0) { done = 1; }
 

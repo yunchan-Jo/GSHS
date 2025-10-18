@@ -12,8 +12,7 @@ int main(void) {
     for (int i = 1; i <= n; i++) phi[i] = i;
     
     for (int i = 2; i <= n; i++) {
-        if (phi[i] == i) {  // i는 소수
-            // i의 모든 배수에 대해 φ 계산
+        if (phi[i] == i) {
             for (int j = i; j <= n; j += i) {
                 phi[j] -= phi[j] / i;
             }
